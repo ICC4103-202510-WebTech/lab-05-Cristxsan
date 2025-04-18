@@ -1,0 +1,779 @@
+  [1m[35m (51.2ms)[0m  [1m[35mCREATE DATABASE "whats_new_development" ENCODING = 'unicode'[0m
+  [1m[35m (44.8ms)[0m  [1m[35mCREATE DATABASE "whats_new_test" ENCODING = 'unicode'[0m
+  [1m[35m (56.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1956318904036092435)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (3.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-18 23:12:47.639796', '2025-04-18 23:12:47.639800') RETURNING "key"[0m
+Migrating to CreateUsers (20250418231231)
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1956318904036092435)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1956318904036092435)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateUsers (20250418231231)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "first_name" character varying, "last_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250418231231') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateChats (20250418231237)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "chats" ("id" bigserial primary key, "sender_id" integer, "receiver_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250418231237') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMessages (20250418231240)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (43.3ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "chat_id" integer, "user_id" integer, "body" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250418231240') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1956318904036092435)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "homer_beer@mertz-morar.test"], ["first_name", "Idella"], ["last_name", "Buckridge"], ["created_at", "2025-04-18 23:17:54.171077"], ["updated_at", "2025-04-18 23:17:54.171077"]]
+  [1m[36mTRANSACTION (52.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "lane.damore@koelpin.example"], ["first_name", "Ardelia"], ["last_name", "Hammes"], ["created_at", "2025-04-18 23:17:54.243522"], ["updated_at", "2025-04-18 23:17:54.243522"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "francina.steuber@ferry-spinka.example"], ["first_name", "Peter"], ["last_name", "Denesik"], ["created_at", "2025-04-18 23:17:54.248262"], ["updated_at", "2025-04-18 23:17:54.248262"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "steven@kemmer.test"], ["first_name", "Yu"], ["last_name", "Hartmann"], ["created_at", "2025-04-18 23:17:54.253870"], ["updated_at", "2025-04-18 23:17:54.253870"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "troy@kozey.example"], ["first_name", "Freeman"], ["last_name", "Feest"], ["created_at", "2025-04-18 23:17:54.260002"], ["updated_at", "2025-04-18 23:17:54.260002"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "clinton.klein@wuckert.test"], ["first_name", "Raymundo"], ["last_name", "Kozey"], ["created_at", "2025-04-18 23:17:54.266207"], ["updated_at", "2025-04-18 23:17:54.266207"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "myrtle@maggio.test"], ["first_name", "Jonah"], ["last_name", "Greenholt"], ["created_at", "2025-04-18 23:17:54.271560"], ["updated_at", "2025-04-18 23:17:54.271561"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "terrence@rice.example"], ["first_name", "Debra"], ["last_name", "Orn"], ["created_at", "2025-04-18 23:17:54.276372"], ["updated_at", "2025-04-18 23:17:54.276372"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "nick.kulas@kreiger-roob.example"], ["first_name", "Reba"], ["last_name", "Rogahn"], ["created_at", "2025-04-18 23:17:54.282147"], ["updated_at", "2025-04-18 23:17:54.282148"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "jae@kshlerin.example"], ["first_name", "Carmelita"], ["last_name", "Gleason"], ["created_at", "2025-04-18 23:17:54.287079"], ["updated_at", "2025-04-18 23:17:54.287079"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.7ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 1], ["receiver_id", 8], ["created_at", "2025-04-18 23:17:54.305712"], ["updated_at", "2025-04-18 23:17:54.305713"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.5ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 4], ["receiver_id", 1], ["created_at", "2025-04-18 23:17:54.324607"], ["updated_at", "2025-04-18 23:17:54.324608"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 10]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.3ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 10], ["receiver_id", 4], ["created_at", "2025-04-18 23:17:54.331688"], ["updated_at", "2025-04-18 23:17:54.331688"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.3ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 2], ["receiver_id", 7], ["created_at", "2025-04-18 23:17:54.338694"], ["updated_at", "2025-04-18 23:17:54.338695"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 10]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.2ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 10], ["receiver_id", 2], ["created_at", "2025-04-18 23:17:54.345154"], ["updated_at", "2025-04-18 23:17:54.345154"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.4ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 2], ["receiver_id", 7], ["created_at", "2025-04-18 23:17:54.352084"], ["updated_at", "2025-04-18 23:17:54.352084"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.2ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 2], ["receiver_id", 3], ["created_at", "2025-04-18 23:17:54.359193"], ["updated_at", "2025-04-18 23:17:54.359193"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 8]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.0ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 8], ["receiver_id", 7], ["created_at", "2025-04-18 23:17:54.366225"], ["updated_at", "2025-04-18 23:17:54.366225"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 6]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.8ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 6], ["receiver_id", 7], ["created_at", "2025-04-18 23:17:54.374103"], ["updated_at", "2025-04-18 23:17:54.374103"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" != $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.8ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 4], ["receiver_id", 10], ["created_at", "2025-04-18 23:17:54.382054"], ["updated_at", "2025-04-18 23:17:54.382054"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.5ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (3.1ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 8], ["user_id", 8], ["body", "Odit atque suscipit qui."], ["created_at", "2025-04-18 23:17:54.390199"], ["updated_at", "2025-04-18 23:17:54.390199"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.7ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.3ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 1], ["user_id", 8], ["body", "Aut quisquam et dignissimos."], ["created_at", "2025-04-18 23:17:54.412626"], ["updated_at", "2025-04-18 23:17:54.412627"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.5ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (2.2ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 8], ["user_id", 8], ["body", "Et odio alias dolor."], ["created_at", "2025-04-18 23:17:54.420358"], ["updated_at", "2025-04-18 23:17:54.420359"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.6ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.5ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 5], ["user_id", 10], ["body", "Perferendis unde eum dolor."], ["created_at", "2025-04-18 23:17:54.428100"], ["updated_at", "2025-04-18 23:17:54.428101"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.5ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (7.2ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 1], ["user_id", 1], ["body", "Odit repellendus expedita voluptatum."], ["created_at", "2025-04-18 23:17:54.434560"], ["updated_at", "2025-04-18 23:17:54.434560"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.8ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (2.3ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 10], ["user_id", 4], ["body", "Eligendi temporibus est rerum."], ["created_at", "2025-04-18 23:17:54.448178"], ["updated_at", "2025-04-18 23:17:54.448179"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.5ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.8ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 7], ["user_id", 2], ["body", "Et magnam aspernatur ea."], ["created_at", "2025-04-18 23:17:54.455323"], ["updated_at", "2025-04-18 23:17:54.455323"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.8ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.5ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 6], ["user_id", 2], ["body", "Neque recusandae eos aut."], ["created_at", "2025-04-18 23:17:54.463849"], ["updated_at", "2025-04-18 23:17:54.463849"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.5ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.3ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 10], ["user_id", 10], ["body", "Expedita quibusdam ut eligendi."], ["created_at", "2025-04-18 23:17:54.470094"], ["updated_at", "2025-04-18 23:17:54.470094"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChat Load (0.7ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.8ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 6], ["user_id", 7], ["body", "Nemo non ut necessitatibus."], ["created_at", "2025-04-18 23:17:54.476955"], ["updated_at", "2025-04-18 23:17:54.476955"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2025-04-18 23:24:23 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 27.9ms | Allocations: 10496)
+  Rendered layout layouts/application.html.erb (Duration: 279.2ms | Allocations: 102929)
+Completed 200 OK in 571ms (Views: 321.4ms | ActiveRecord: 9.0ms | Allocations: 396286)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:24:24 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 843)
+  Rendered layout layouts/application.html.erb (Duration: 20.3ms | Allocations: 4740)
+Completed 200 OK in 22ms (Views: 18.4ms | ActiveRecord: 2.8ms | Allocations: 4999)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:24:25 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (1.2ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 9.4ms | Allocations: 4718)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 6067)
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 3.2ms | Allocations: 6869)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:24:27 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.9ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 15.8ms | Allocations: 5246)
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | Allocations: 6585)
+Completed 200 OK in 20ms (Views: 15.7ms | ActiveRecord: 3.0ms | Allocations: 7397)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:24:28 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 841)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2160)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 1.0ms | Allocations: 2417)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2025-04-18 23:24:29 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 3.8ms | Allocations: 199)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 1523)
+Completed 200 OK in 12ms (Views: 7.0ms | ActiveRecord: 1.1ms | Allocations: 4114)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:24:31 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 834)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2174)
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.3ms | Allocations: 2424)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2025-04-18 23:24:32 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 1386)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:24:33 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 834)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2174)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 1.0ms | Allocations: 2424)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:24:34 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.4ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 815)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 2137)
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.4ms | Allocations: 2387)
+
+
+Started GET "/messages/1" for 127.0.0.1 at 2025-04-18 23:24:35 +0000
+Processing by MessagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering messages/show.html.erb within layouts/application
+  Rendered messages/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 202)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 1540)
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 0.3ms | Allocations: 2867)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:24:38 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (1.0ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 774)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2106)
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 1.0ms | Allocations: 2358)
+
+
+Started GET "/chats/1" for 127.0.0.1 at 2025-04-18 23:24:38 +0000
+Processing by ChatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChat Load (0.4ms)[0m  [1m[34mSELECT "chats".* FROM "chats" WHERE "chats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/chats_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering chats/show.html.erb within layouts/application
+  Rendered chats/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 181)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 1517)
+Completed 200 OK in 8ms (Views: 3.5ms | ActiveRecord: 0.4ms | Allocations: 2839)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:24:40 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 834)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 2175)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.7ms | Allocations: 2425)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (81.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "whats_new_development"[0m
+  [1m[35m (34.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "whats_new_test"[0m
+  [1m[35m (43.6ms)[0m  [1m[35mCREATE DATABASE "whats_new_development" ENCODING = 'unicode'[0m
+  [1m[35m (43.0ms)[0m  [1m[35mCREATE DATABASE "whats_new_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "chats" CASCADE[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "chats" ("id" bigserial primary key, "sender_id" integer, "receiver_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "messages" CASCADE[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "chat_id" integer, "user_id" integer, "body" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "first_name" character varying, "last_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250418231240)[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250418231237),
+(20250418231231);[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-18 23:27:35.913373', '2025-04-18 23:27:35.913375') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5ab9733e87886e2dadde2d9ca8dd87bb47acbc7c', '2025-04-18 23:27:35.919288', '2025-04-18 23:27:35.919290') RETURNING "key"[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "chats" CASCADE[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "chats" ("id" bigserial primary key, "sender_id" integer, "receiver_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "messages" CASCADE[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "chat_id" integer, "user_id" integer, "body" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "first_name" character varying, "last_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250418231240)[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250418231237),
+(20250418231231);[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-18 23:27:35.999170', '2025-04-18 23:27:35.999172') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-04-18 23:27:36.003555' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5ab9733e87886e2dadde2d9ca8dd87bb47acbc7c', '2025-04-18 23:27:36.007155', '2025-04-18 23:27:36.007157') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (372.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "whats_new_development"[0m
+  [1m[35m (35.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "whats_new_test"[0m
+  [1m[35m (41.9ms)[0m  [1m[35mCREATE DATABASE "whats_new_development" ENCODING = 'unicode'[0m
+  [1m[35m (42.3ms)[0m  [1m[35mCREATE DATABASE "whats_new_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "chats" CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "chats" ("id" bigserial primary key, "sender_id" integer, "receiver_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "messages" CASCADE[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "chat_id" integer, "user_id" integer, "body" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "first_name" character varying, "last_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250418231240)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250418231237),
+(20250418231231);[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-18 23:29:43.323345', '2025-04-18 23:29:43.323348') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5ab9733e87886e2dadde2d9ca8dd87bb47acbc7c', '2025-04-18 23:29:43.328378', '2025-04-18 23:29:43.328380') RETURNING "key"[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "chats" CASCADE[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "chats" ("id" bigserial primary key, "sender_id" integer, "receiver_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "messages" CASCADE[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "messages" ("id" bigserial primary key, "chat_id" integer, "user_id" integer, "body" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "first_name" character varying, "last_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250418231240)[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250418231237),
+(20250418231231);[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-18 23:29:43.407874', '2025-04-18 23:29:43.407876') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (2.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-04-18 23:29:43.412446' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5ab9733e87886e2dadde2d9ca8dd87bb47acbc7c', '2025-04-18 23:29:43.416088', '2025-04-18 23:29:43.416089') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "camila.perez@gmail.com"], ["first_name", "Camila"], ["last_name", "Pérez"], ["created_at", "2025-04-18 23:29:43.459251"], ["updated_at", "2025-04-18 23:29:43.459251"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "diego.gonzalez@gmail.com"], ["first_name", "Diego"], ["last_name", "González"], ["created_at", "2025-04-18 23:29:43.466081"], ["updated_at", "2025-04-18 23:29:43.466081"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "fernanda.rojas@gmail.com"], ["first_name", "Fernanda"], ["last_name", "Rojas"], ["created_at", "2025-04-18 23:29:43.470771"], ["updated_at", "2025-04-18 23:29:43.470771"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (5.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "matias.lopez@gmail.com"], ["first_name", "Matías"], ["last_name", "López"], ["created_at", "2025-04-18 23:29:43.475016"], ["updated_at", "2025-04-18 23:29:43.475016"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "valentina.munoz@gmail.com"], ["first_name", "Valentina"], ["last_name", "Muñoz"], ["created_at", "2025-04-18 23:29:43.483561"], ["updated_at", "2025-04-18 23:29:43.483561"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "sebastian.ramirez@gmail.com"], ["first_name", "Sebastián"], ["last_name", "Ramírez"], ["created_at", "2025-04-18 23:29:43.488440"], ["updated_at", "2025-04-18 23:29:43.488440"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "ignacia.torres@gmail.com"], ["first_name", "Ignacia"], ["last_name", "Torres"], ["created_at", "2025-04-18 23:29:43.492627"], ["updated_at", "2025-04-18 23:29:43.492627"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "benjamin.fuentes@gmail.com"], ["first_name", "Benjamín"], ["last_name", "Fuentes"], ["created_at", "2025-04-18 23:29:43.497534"], ["updated_at", "2025-04-18 23:29:43.497534"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "antonia.castillo@gmail.com"], ["first_name", "Antonia"], ["last_name", "Castillo"], ["created_at", "2025-04-18 23:29:43.502215"], ["updated_at", "2025-04-18 23:29:43.502215"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "joaquin.vera@gmail.com"], ["first_name", "Joaquín"], ["last_name", "Vera"], ["created_at", "2025-04-18 23:29:43.506570"], ["updated_at", "2025-04-18 23:29:43.506570"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.8ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 1], ["receiver_id", 2], ["created_at", "2025-04-18 23:29:43.524560"], ["updated_at", "2025-04-18 23:29:43.524560"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.3ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 3], ["receiver_id", 4], ["created_at", "2025-04-18 23:29:43.530017"], ["updated_at", "2025-04-18 23:29:43.530017"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.4ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 5], ["receiver_id", 6], ["created_at", "2025-04-18 23:29:43.534224"], ["updated_at", "2025-04-18 23:29:43.534224"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.3ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 7], ["receiver_id", 8], ["created_at", "2025-04-18 23:29:43.538494"], ["updated_at", "2025-04-18 23:29:43.538494"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChat Create (1.2ms)[0m  [1m[32mINSERT INTO "chats" ("sender_id", "receiver_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["sender_id", 9], ["receiver_id", 10], ["created_at", "2025-04-18 23:29:43.542757"], ["updated_at", "2025-04-18 23:29:43.542757"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.9ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 1], ["user_id", 1], ["body", "Hola Diego, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.561451"], ["updated_at", "2025-04-18 23:29:43.561451"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.5ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 1], ["user_id", 2], ["body", "Hola Camila, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.568090"], ["updated_at", "2025-04-18 23:29:43.568090"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (3.8ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 2], ["user_id", 3], ["body", "Hola Matías, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.573244"], ["updated_at", "2025-04-18 23:29:43.573244"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.4ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 2], ["user_id", 4], ["body", "Hola Fernanda, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.580497"], ["updated_at", "2025-04-18 23:29:43.580497"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.6ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 3], ["user_id", 5], ["body", "Hola Sebastián, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.585878"], ["updated_at", "2025-04-18 23:29:43.585878"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (2.1ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 3], ["user_id", 6], ["body", "Hola Valentina, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.590863"], ["updated_at", "2025-04-18 23:29:43.590863"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.3ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 4], ["user_id", 7], ["body", "Hola Benjamín, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.596343"], ["updated_at", "2025-04-18 23:29:43.596343"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.8ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 4], ["user_id", 8], ["body", "Hola Ignacia, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.601405"], ["updated_at", "2025-04-18 23:29:43.601405"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.2ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 5], ["user_id", 9], ["body", "Hola Joaquín, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.606095"], ["updated_at", "2025-04-18 23:29:43.606095"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMessage Create (1.2ms)[0m  [1m[32mINSERT INTO "messages" ("chat_id", "user_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["chat_id", 5], ["user_id", 10], ["body", "Hola Antonia, ¿cómo estás?"], ["created_at", "2025-04-18 23:29:43.610873"], ["updated_at", "2025-04-18 23:29:43.610873"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2025-04-18 23:30:09 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 41.3ms | Allocations: 10444)
+  Rendered layout layouts/application.html.erb (Duration: 85.6ms | Allocations: 41932)
+Completed 200 OK in 114ms (Views: 78.2ms | ActiveRecord: 10.6ms | Allocations: 51786)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2025-04-18 23:30:16 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 199)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 2554)
+Completed 200 OK in 13ms (Views: 7.8ms | ActiveRecord: 0.6ms | Allocations: 5149)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:30:17 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 840)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 2162)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 1.2ms | Allocations: 2418)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:30:18 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (0.9ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 16.0ms | Allocations: 4493)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 5844)
+Completed 200 OK in 21ms (Views: 15.9ms | ActiveRecord: 3.3ms | Allocations: 6652)
+
+
+Started GET "/chats/1" for 127.0.0.1 at 2025-04-18 23:30:19 +0000
+Processing by ChatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChat Load (0.3ms)[0m  [1m[34mSELECT "chats".* FROM "chats" WHERE "chats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/chats_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering chats/show.html.erb within layouts/application
+  Rendered chats/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 181)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 1496)
+Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 0.3ms | Allocations: 2832)
+
+
+Started GET "/chats/3" for 127.0.0.1 at 2025-04-18 23:30:21 +0000
+Processing by ChatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChat Load (0.4ms)[0m  [1m[34mSELECT "chats".* FROM "chats" WHERE "chats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/chats_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering chats/show.html.erb within layouts/application
+  Rendered chats/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 41)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 1377)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.4ms | Allocations: 2033)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:30:22 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (0.8ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 602)
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 1945)
+Completed 200 OK in 14ms (Views: 12.5ms | ActiveRecord: 0.8ms | Allocations: 2196)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:23 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.9ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 18.3ms | Allocations: 5262)
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | Allocations: 6620)
+Completed 200 OK in 24ms (Views: 19.8ms | ActiveRecord: 2.8ms | Allocations: 7426)
+
+
+Started GET "/messages/1" for 127.0.0.1 at 2025-04-18 23:30:24 +0000
+Processing by MessagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMessage Load (0.5ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering messages/show.html.erb within layouts/application
+  Rendered messages/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 200)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 1533)
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 0.4ms | Allocations: 2861)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:25 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.7ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 2151)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 2401)
+
+
+Started GET "/messages/2" for 127.0.0.1 at 2025-04-18 23:30:26 +0000
+Processing by MessagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering messages/show.html.erb within layouts/application
+  Rendered messages/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1362)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 2019)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:26 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.7ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2148)
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.7ms | Allocations: 2398)
+
+
+Started GET "/messages/4" for 127.0.0.1 at 2025-04-18 23:30:27 +0000
+Processing by MessagesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMessage Load (0.5ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering messages/show.html.erb within layouts/application
+  Rendered messages/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 1371)
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 0.5ms | Allocations: 2029)
+
+
+Started GET "/messages/4" for 127.0.0.1 at 2025-04-18 23:30:27 +0000
+Processing by MessagesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering messages/show.html.erb within layouts/application
+  Rendered messages/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1368)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 2025)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:28 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.8ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 2137)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.8ms | Allocations: 2387)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:30:29 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 835)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 2175)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 2426)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:30:42 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 834)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 2168)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.9ms | Allocations: 2418)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:30:42 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (0.8ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 603)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 1946)
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.8ms | Allocations: 2197)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:43 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (1.0ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 2136)
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 1.0ms | Allocations: 2386)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:30:43 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (4.1ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 6.5ms | Allocations: 602)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 1924)
+Completed 200 OK in 10ms (Views: 5.1ms | ActiveRecord: 4.1ms | Allocations: 2175)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:30:43 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 834)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 2168)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.3ms | Allocations: 2418)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:30:44 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (0.6ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 602)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 1954)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.6ms | Allocations: 2204)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:44 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.7ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 2145)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 2395)
+
+
+Started GET "/users" for 127.0.0.1 at 2025-04-18 23:30:45 +0000
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:13
+  Rendered users/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 834)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 2153)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.7ms | Allocations: 2403)
+
+
+Started GET "/chats" for 127.0.0.1 at 2025-04-18 23:30:45 +0000
+Processing by ChatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering chats/index.html.erb within layouts/application
+  [1m[36mChat Load (0.8ms)[0m  [1m[34mSELECT "chats".* FROM "chats"[0m
+  ↳ app/views/chats/index.html.erb:12
+  Rendered chats/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 602)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 1945)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.8ms | Allocations: 2195)
+
+
+Started GET "/messages" for 127.0.0.1 at 2025-04-18 23:30:45 +0000
+Processing by MessagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering messages/index.html.erb within layouts/application
+  [1m[36mMessage Load (0.8ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/views/messages/index.html.erb:13
+  Rendered messages/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 814)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 2163)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 2413)
+
+
